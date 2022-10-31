@@ -1,0 +1,7 @@
+`ifndef ACCUM_DEFINES
+`define ACCUM_DEFINES
+
+	`define DATA_WIDTH	32
+	`define NO_OF_TRANSACTIONS 1000
+
+`endif

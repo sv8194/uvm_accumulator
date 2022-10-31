@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# -i: include files
+
+test_name="accum_basic_test"	# uvm_test class
+top_mod="accum_tb_top"			# top module name
+
+xvlog -sv -f my_test.f -L uvm -define NO_OF_TRANSACTIONS=500
+if [ $? -ne 0 ]; then
+	exit -1
+fi
+xelab $top_mod -relax -s top -timescale 1ns/1ps;  
+if [ $? -ne 0 ]; then
+	exit -1
+fi
+xsim top -testplusarg UVM_TESTNAME=$test_name -testplusarg UVM_VERBOSITY=UVM_LOW -runall 

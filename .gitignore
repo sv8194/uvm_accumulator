@@ -1,0 +1,10 @@
+.*.swp
+**/*.jou
+**/*.log
+**/*.pb
+**/xsim.dir
+**/*.gtkw
+**/*.wdb
+**/*.vcd
+Sim
+scripts
