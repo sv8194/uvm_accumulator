@@ -18,6 +18,9 @@ class accum_transaction extends uvm_sequence_item;
     super.new(name);
   endfunction
 
+  constraint c_data { data inside {['h20:'h100]}; }			// range
+  constraint c_enable { enable dist { 0:=80, 1:=20 }; }		// distribituion
+
 endclass
 
 `endif
