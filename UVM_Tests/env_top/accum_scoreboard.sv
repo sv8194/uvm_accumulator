@@ -10,7 +10,6 @@ class accum_scoreboard extends uvm_scoreboard;
 	accum_transaction exp_trans_fifo[$], act_trans_fifo[$];
 	bit error;
 	bit first_transac;
-	int prev_data;
 	
 	function new (string name, uvm_component parent);
 	  super.new(name, parent);
@@ -54,13 +53,11 @@ class accum_scoreboard extends uvm_scoreboard;
 				act_trans = act_trans_fifo.pop_front();
 				if (act_trans.enable == 1) begin
 			    	`uvm_info(get_full_name(), $sformatf("expected accum SUM =%x, actual accum SUM =%x ", exp_trans.accum, act_trans.accum), UVM_LOW);
-					$display("--> %t pre_data/%x e_en/%d e_data/%x e_acc/%x a_en/%d a_data/%x a_acc/%x",
+					$display("--> %t e_en/%d e_data/%x e_acc/%x a_en/%d a_data/%x a_acc/%x",
 						$time,
-						prev_data,
 						exp_trans.enable, exp_trans.data, exp_trans.accum,
 						act_trans.enable, act_trans.data, act_trans.accum,
 						);
-			    	//if(prev_data == (act_trans.data + act_trans.accum)) begin
 			    	if(exp_trans.accum == (act_trans.data + act_trans.accum)) begin
 			    	   `uvm_info(get_full_name(), $sformatf("SUM MATCHES"), UVM_LOW);
 			    	end else begin
@@ -69,26 +66,8 @@ class accum_scoreboard extends uvm_scoreboard;
 			    	end
 				end
 	
-			 	// yibing -
-			 	//if(exp_trans.accum == act_trans.accum) begin
-			    //	`uvm_info(get_full_name(),$sformatf("SUM MATCHES"),UVM_LOW);
-			    //end else begin
-			    //	`uvm_error(get_full_name(),$sformatf("SUM MIS-MATCHES"));
-			    //	error=1;
-	  			//end
 	  		end : b0
-			//if (first_transac) begin
-			//	prev_data <= act_trans.data;
-			//end else begin
-			//	prev_data <= act_trans.accum;
-			//end
-			//first_transac = 0;
 
-			if (exp_trans.enable) begin
-				prev_data <= act_trans.data + act_trans.accum;
-			end else begin
-				prev_data <= act_trans.accum;
-			end
 		end : b1
 	endtask
 

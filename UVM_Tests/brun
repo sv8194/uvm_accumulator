@@ -1,6 +1,5 @@
 #!/bin/bash
 #
-# -i: include files
 
 test_name="accum_basic_test"	# uvm_test class
 top_mod="accum_tb_top"			# top module name
