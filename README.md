@@ -3,8 +3,8 @@ A clocked 32bit signed accumulator targeted for FPGA designs. For a higher clock
 
 The UVM test runs under Xilinx Vivado 2021.2 with the script UVM_Tests/brun
 
-TODO:
-	. handle buffer clear bit properly in UVM.
+TODO:\
+	. handle buffer clear bit properly in UVM.\
 	. accumulator width != 32.
 
 License
