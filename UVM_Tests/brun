@@ -4,7 +4,7 @@
 test_name="accum_basic_test"	# uvm_test class
 top_mod="accum_tb_top"			# top module name
 
-xvlog -sv -f my_test.f -L uvm -define NO_OF_TRANSACTIONS=500
+xvlog -sv -f my_test.f -L uvm -define NO_OF_TRANSACTIONS=1000
 if [ $? -ne 0 ]; then
 	exit -1
 fi

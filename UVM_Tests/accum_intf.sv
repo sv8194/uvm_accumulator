@@ -21,6 +21,7 @@ interface accum_intf(input logic clk, reset_n);
 
   // clocking for receiver
   clocking rc_cb@(negedge clk) ;
+  	default input #1step output #2;
     input data;
     input enable;
     input clear;

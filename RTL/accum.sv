@@ -40,7 +40,7 @@ always@(posedge clk) begin
 		  })
 		2'b1?: result_o <= 'd0;
 
-		//2'b01: result_o <= (result_o == 'h75450) ? 'd0 : { result_o + in_data_sext }; 		// trigger an error, t=675ns
+		//2'b01: result_o <= (result_o == 'hfeb4) ? 'h1111 : { result_o + in_data_sext }; 		// trigger an error, t=2365ns
 		2'b01: result_o <= { result_o + in_data_sext };
 
 		2'b00: result_o <= result_o; 

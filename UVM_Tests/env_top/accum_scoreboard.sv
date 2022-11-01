@@ -65,8 +65,8 @@ class accum_scoreboard extends uvm_scoreboard;
 			       `uvm_error(get_full_name(), $sformatf("SUM MIS-MATCHES"));
 			       error=1;
 			    end
-			end
-		end
+	  		end : b0
+		end : b1
 	endtask
 
 	function void report_phase(uvm_phase phase);
