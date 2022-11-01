@@ -39,7 +39,7 @@ always@(posedge clk) begin
 			en_i
 		  })
 		2'b1?: result_o <= 'd0;
-		//2'b01: result_o <= (result_o == 'h0880bda3) ? 'd0 : { result_o + in_data_sext }; 		// trigger an error
+		//2'b01: result_o <= (result_o == 'h3e357) ? 'd0 : { result_o + in_data_sext }; 		// trigger an error
 		2'b01: result_o <= { result_o + in_data_sext };
 		2'b00: result_o <= result_o; 
 	endcase
