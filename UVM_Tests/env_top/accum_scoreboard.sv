@@ -51,24 +51,22 @@ class accum_scoreboard extends uvm_scoreboard;
 	
 			if (act_trans_fifo.size!=0) begin : b0
 				act_trans = act_trans_fifo.pop_front();
-				if (act_trans.enable == 1) begin
-			    	`uvm_info(get_full_name(), $sformatf("expected accum SUM =%x, actual accum SUM =%x ", exp_trans.accum, act_trans.accum), UVM_LOW);
-					$display("--> %t e_en/%d e_data/%x e_acc/%x a_en/%d a_data/%x a_acc/%x",
-						$time,
-						exp_trans.enable, exp_trans.data, exp_trans.accum,
-						act_trans.enable, act_trans.data, act_trans.accum,
-						);
-			    	if(exp_trans.accum == (act_trans.data + act_trans.accum)) begin
-			    	   `uvm_info(get_full_name(), $sformatf("SUM MATCHES"), UVM_LOW);
-			    	end else begin
-			    	   `uvm_error(get_full_name(), $sformatf("SUM MIS-MATCHES"));
-			    	   error=1;
-			    	end
-				end
-	
-	  		end : b0
-
-		end : b1
+				$display("exp_trans: ------------------------");
+				exp_trans.print();
+				$display("act_trans: ------------------------");
+				act_trans.print();
+			    `uvm_info(get_full_name(), $sformatf("expected accum SUM =%x, actual accum SUM =%x ",
+					exp_trans.accum + exp_trans.data,
+					act_trans.accum
+					), UVM_LOW);
+			    if(act_trans.accum == (exp_trans.data + exp_trans.accum)) begin
+			       `uvm_info(get_full_name(), $sformatf("SUM MATCHES"), UVM_LOW);
+			    end else begin
+			       `uvm_error(get_full_name(), $sformatf("SUM MIS-MATCHES"));
+			       error=1;
+			    end
+			end
+		end
 	endtask
 
 	function void report_phase(uvm_phase phase);
