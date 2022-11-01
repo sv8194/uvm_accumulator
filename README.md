@@ -7,10 +7,6 @@ To force a simulation error, uncomment line 42 in RTL/accum.sv and comment out t
 
 The waveform dump and simulation log are in UVM_Tests/test.vcd and UVM_Tests/xsim.log.
 
-TODO:\
-	. handle buffer clear bit properly in UVM.\
-	. accumulator width != 32.
-
 Author contact:\
 	tensor16@comcast.net
 
