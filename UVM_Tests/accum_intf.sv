@@ -11,6 +11,7 @@ interface accum_intf(input logic clk, reset_n);
 
   // clocking for driver
   clocking dr_cb@(posedge clk) ;
+  	default input #1step output #2;
     output data;
     output enable;
     output clear;
