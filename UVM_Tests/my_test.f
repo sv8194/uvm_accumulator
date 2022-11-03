@@ -4,6 +4,7 @@
 -i ./seq
 -i ./tests
 ../RTL/accum.sv
+sva_top.sv
 accum_agent_pkg.sv 
 accum_ref_model_pkg.sv 
 accum_env_pkg.sv

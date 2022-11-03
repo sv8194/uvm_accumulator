@@ -45,12 +45,7 @@ module accum_tb_top;
 		run_test();
 	end
 
-	// make sure clear signal for accumulator works properly.
-	property pp0;
-		disable iff (!reset_n)
-		@(posedge clk) accum_intf.clear |-> ##1 (accum_intf.accum == 'd0);
-	endproperty
-	assert property(pp0);
+	bind accum : dut sva_top sva (.*);
 
 	initial begin $dumpfile("test.vcd"); $dumpvars(0, accum_tb_top); end
 endmodule

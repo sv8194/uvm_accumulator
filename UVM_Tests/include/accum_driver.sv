@@ -64,11 +64,14 @@ class accum_driver extends uvm_driver #(accum_transaction);
 	
 	// get DUT a nice state around T=0
 	task reset();
-		vif.dr_cb.clear <= 1;
+		vif.dr_cb.clear <= 0;
 		vif.dr_cb.data <='d0;
 		vif.dr_cb.enable <= 0;
 		repeat(5)@(vif.dr_cb);
+		vif.dr_cb.clear <= 1;
+		@(vif.dr_cb);
 		vif.dr_cb.clear <= 0;
+
 		repeat(5)@(vif.dr_cb);
 	endtask
 
