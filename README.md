@@ -1,5 +1,8 @@
 # 32 bit(parameterized) accumulator UVM verifications.
-A clocked 32bit signed accumulator targeted for FPGA designs. For a higher clock frequency, pipelining is desired.
+Accumulators are widely used in CIC/IIR filters.
+A clocked 32bit signed accumulator targeted for FPGA designs is included here.
+For a higher clock frequency, pipelining is desired(it's a little tricky since we have to solve the
+feedback issue for pipelining).
 
 The UVM test runs under Xilinx Vivado 2021.2 with the script UVM_Tests/brun
 

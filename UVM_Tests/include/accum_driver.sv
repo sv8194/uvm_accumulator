@@ -1,6 +1,11 @@
 `ifndef ACCUM_DRIVER
 `define ACCUM_DRIVER
 
+//
+// since the free Vivado simulator doesn't allow us to use $randomize(seed), with a RTL pseudorandom number
+// generator or one from C/DPI, we should be able to control the data and the interval between 2 transactions
+// that we drive to the bus.
+//
 class accum_driver extends uvm_driver #(accum_transaction);
  
 	accum_transaction trans;
