@@ -1,3 +1,5 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
 
 module sva_top #(
 	parameter DIN_WIDTH = 32,
@@ -12,7 +14,6 @@ module sva_top #(
 
 	input logic signed [DOUT_WIDTH-1:0]		result_o
 );
-
 	logic signed [DIN_WIDTH-1:0]	data_p;
 	logic signed [DOUT_WIDTH-1:0]	result_p;
 
@@ -24,11 +25,13 @@ module sva_top #(
 	property pp0;
 		@(posedge clk) clear_i |-> ##1 (result_o == 'd0);
 	endproperty
-	assert property(pp0);
+	assert property(pp0) else
+		`uvm_error("SVA", "assertion");
 
 	property pp1;
 		@(posedge clk) en_i |-> ##1 (result_o == (data_p + result_p));
 	endproperty
-	assert property(pp1);
+	assert property(pp1) else
+		`uvm_error("SVA", "assertion");
 
 endmodule
