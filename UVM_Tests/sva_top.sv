@@ -26,12 +26,18 @@ module sva_top #(
 		@(posedge clk) clear_i |-> ##1 (result_o == 'd0);
 	endproperty
 	assert property(pp0) else
-		`uvm_error("SVA", "assertion");
+		`uvm_error("SVA", "assertion clear_i");
 
 	property pp1;
 		@(posedge clk) en_i |-> ##1 (result_o == (data_p + result_p));
 	endproperty
 	assert property(pp1) else
-		`uvm_error("SVA", "assertion");
+		`uvm_error("SVA", "assertion en_i");
+
+	property pp2;
+		@(posedge clk) !((en_i === 1'b1) && (clear_i === 1'b1));
+	endproperty
+	assert property(pp2) else
+		`uvm_error("SVA", "assertion: en_i/clear_i");
 
 endmodule
