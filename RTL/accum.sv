@@ -31,7 +31,7 @@ module accum #(
 localparam
 	STUFF_BITS = DOUT_WIDTH - DIN_WIDTH; 
 
-wire [DOUT_WIDTH-1:0]	in_data_sext = DIN_WIDTH'(signed'(data_i));
+wire [DOUT_WIDTH-1:0]	in_data_sext = DOUT_WIDTH'(signed'(data_i));
 
 always@(posedge clk) begin
 	casez({
