@@ -15,16 +15,6 @@ module accum_tb_top;
 	bit reset_n;
 
 	//--------------------------------------- 
-	// clock and reset
-	initial forever #(cycle/2) clk = ~clk;
-
-	initial begin
-		clk = 1'b0;
-		reset_n = 1'b0;  
-		#(cycle* 5) reset_n = 1;
-	end
-
-	//--------------------------------------- 
 	// interface
 	accum_intf accum_intf(clk,reset_n);
 
@@ -39,13 +29,25 @@ module accum_tb_top;
 		);
  
 	//--------------------------------------- 
+	// SVA top for assertions
+	bind accum : dut sva_top sva (.*);
+
+	//--------------------------------------- 
+	// clock and reset
+	initial forever #(cycle/2) clk = ~clk;
+
+	initial begin
+		clk = 1'b0;
+		reset_n = 1'b0;  
+		#(cycle* 5) reset_n = 1;
+	end
+
+	//--------------------------------------- 
 	// start UVM tests
 	initial begin
 		uvm_config_db#(virtual accum_intf)::set(uvm_root::get(),"*","intf",accum_intf);
 		run_test();
 	end
-
-	bind accum : dut sva_top sva (.*);
 
 	initial begin $dumpfile("test.vcd"); $dumpvars(0, accum_tb_top); end
 endmodule

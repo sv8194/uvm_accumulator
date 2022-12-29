@@ -12,10 +12,10 @@ interface accum_intf(input logic clk, reset_n);
   // clocking for driver
   clocking dr_cb@(posedge clk) ;
   	default input #1step output #2;
+    input  accum;
     output data;
     output enable;
     output clear;
-    input  accum;
   endclocking
 
   modport DRV (clocking dr_cb,input clk,reset_n) ;

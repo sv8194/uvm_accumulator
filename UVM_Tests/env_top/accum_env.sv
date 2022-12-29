@@ -3,8 +3,8 @@
 
 class accum_environment extends uvm_env;
  
-  accum_agent accum_agnt;
-  accum_ref_model ref_model;
+  accum_agent 		accum_agnt;
+  accum_ref_model 	ref_model;
   accum_scoreboard  sb;
   //accum_coverage#(accum_transaction) coverage;
    
