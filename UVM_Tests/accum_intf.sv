@@ -31,6 +31,10 @@ interface accum_intf(input logic clk, reset_n);
 
   modport RCV (clocking rc_cb,input clk,reset_n);
 
+  modport DUT (input enable, clear, data, clk, reset_n, output accum);
+
+  modport SV (input accum, enable, clear, data, clk, reset_n); 
+
 endinterface
 
 `endif

@@ -6,14 +6,14 @@ module sva_top #(
 	parameter DOUT_WIDTH = 32
 )
 (
-	input logic        						clk,
-
-	input logic        						en_i,			// enable
-	input logic        						clear_i,		// clear
-	input logic signed [DIN_WIDTH-1:0]		data_i,			// input data
-
-	input logic signed [DOUT_WIDTH-1:0]		result_o
+	interface itf
 );
+	wire					clk = itf.clk;
+	wire					en_i = itf.enable;
+	wire					clear_i = itf.clear;
+	wire [DIN_WIDTH-1:0]	data_i = itf.data;
+	wire [DOUT_WIDTH-1:0]	result_o = itf.accum;
+
 	logic signed [DIN_WIDTH-1:0]	data_p;
 	logic signed [DOUT_WIDTH-1:0]	result_p;
 

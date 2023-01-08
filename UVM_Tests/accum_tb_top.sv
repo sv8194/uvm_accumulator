@@ -16,21 +16,15 @@ module accum_tb_top;
 
 	//--------------------------------------- 
 	// interface
-	accum_intf accum_intf(clk,reset_n);
+	accum_intf accum_intf(clk, reset_n);
 
 	//--------------------------------------- 
 	// DUT
-	accum dut(
-		.clk		(clk),
-		.en_i		(accum_intf.enable),
-		.clear_i	(accum_intf.clear),
-		.data_i		(accum_intf.data),
-		.result_o	(accum_intf.accum)
-		);
+	accum dut(.itf(accum_intf.DUT));
  
 	//--------------------------------------- 
 	// SVA top for assertions
-	bind accum : dut sva_top sva (.*);
+	bind accum : dut sva_top sva (.itf(accum_intf.SV));
 
 	//--------------------------------------- 
 	// clock and reset

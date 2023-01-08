@@ -20,18 +20,19 @@ module accum #(
 	parameter DOUT_WIDTH = 32
 )
 (
-	input logic        						clk,
-
-	input logic        						en_i,			// enable
-	input logic        						clear_i,		// clear
-	input logic signed [DIN_WIDTH-1:0]		data_i,			// input data
-
-	output logic signed [DOUT_WIDTH-1:0]	result_o
+	interface itf
 );
 localparam
 	STUFF_BITS = DOUT_WIDTH - DIN_WIDTH; 
 
-wire [DOUT_WIDTH-1:0]	in_data_sext = DOUT_WIDTH'(signed'(data_i));
+reg signed [DOUT_WIDTH-1:0]		result_o;
+wire 							clk = itf.clk;
+//wire signed [DIN_WIDTH-1:0]		data_i = itf.data;
+wire 							clear_i = itf.clear;
+wire 							en_i = itf.enable;
+wire [DOUT_WIDTH-1:0]			in_data_sext = DOUT_WIDTH'(signed'(itf.data));
+
+assign itf.accum = result_o;
 
 always@(posedge clk) begin
 	casez({
